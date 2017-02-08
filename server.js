@@ -5,7 +5,6 @@ var morgan = require('morgan');
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var User = require('./app/models/user');
-var connection = require('./config/database');
 var router = express.Router();
 var appRoutes = require('./app/routes/routes')(router);
 
@@ -15,6 +14,11 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use('/api', appRoutes);
 
+var connection = require('./config/database');
+
+app.get('*', function(req, res) {
+	res.sendFile('index.html');
+});
 
 app.listen(port, process.env.IP, function() {
 	console.log('Server started at port ' + port);

@@ -1,9 +1,6 @@
 var User = require('../models/user');
 
 module.exports = function(router) {
-	router.get('/', function(req, res) {
-		res.sendFile('./public/index.html');
-	});
 
 	router.post('/register', function(req, res) {
 		var user = new User;
@@ -24,4 +21,6 @@ module.exports = function(router) {
 			})
 		}
 	});
+
+	return router;
 }
